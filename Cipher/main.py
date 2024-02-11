@@ -1,5 +1,6 @@
-text = 'Hello World'
+message = 'Hello World'
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
-print(alphabet)
+def vigenere(message, offset):
+    pass
 
