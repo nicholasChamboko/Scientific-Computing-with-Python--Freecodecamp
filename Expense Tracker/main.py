@@ -1,15 +1,22 @@
 """
     Simple expense tracker program
 """
+def main():
+    expenses = []
 
 def add_expenses(expenses, amount, category):
-    expenses = []
-    my_dict = {
+    """Function to add expenses to the expense tracker"""
+    expenses.append = [{
         'amount ': amount,
-        'category': category}
-
-    expenses.append(my_dict)
+        'category': category}]
 
 def print_expenses(expenses):
     for expense in expenses:
-        print(f'Amount: {expense}, Category: {expense}')
+        print(f'Amount: {expense["amount"]}, Category: {expense["category"]}')
+
+def total_expenses(expenses):
+    return sum(map(lambda expense: expense["amount"], expenses))
+    
+
+def filter_expenses_by_category(expenses, category):
+   return filter(lambda expense: expense["category"] == category, expenses)
