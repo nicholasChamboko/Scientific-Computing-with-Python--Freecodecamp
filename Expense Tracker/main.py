@@ -47,10 +47,12 @@ def print_expenses(expenses):
         print(f'Amount: R{expense["amount"]}, Category: {expense["category"]}')
 
 def total_expenses(expenses):
+    #Applying the lambda function to all the items in the expenses iterable
     return sum(map(lambda expense: expense["amount"], expenses))
     
 
 def filter_expenses_by_category(expenses, category):
+   #Using a filter function with a lambda to the entry based on the specified category
    return filter(lambda expense: expense["category"] == category, expenses)
 
 if __name__ == '__main__':
