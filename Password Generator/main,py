@@ -1,0 +1,12 @@
+"""
+    Learning Regular expressions by building a password generator
+"""
+import string
+
+#Possible characters for the password
+letters = string.ascii_letters
+digits = string.digits
+symbols = string.punctuation
+
+all_characters = letters + digits + symbols
+print(all_characters)
