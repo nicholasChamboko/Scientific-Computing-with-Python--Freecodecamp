@@ -1,12 +1,36 @@
 """
     Learning Regular expressions by building a password generator
 """
+import re
+import secrets
 import string
 
-#Possible characters for the password
-letters = string.ascii_letters
-digits = string.digits
-symbols = string.punctuation
+def generate_password(length, nums, special_char, uppercase, lowercase):
+    #Possible characters for the password
+    letters = string.ascii_letters
+    digits = string.digits
+    symbols = string.punctuation
 
-all_characters = letters + digits + symbols
-print(all_characters)
+    #Combining all characters
+    all_characters = letters + digits + symbols
+
+    while True:
+        password = ''
+        #Generate password using _ as a variable
+        for _ in range(length):
+            password += secrets.choice(all_characters)
+
+        constraints = [
+            (nums, '')
+            ]
+    return password
+
+"""
+    A regex is a pattern used to matcha specific combination of characters inside a string
+"""
+#Compile function compiles the string passed as an argument into a regular expression object that can be used by other re methods
+pattern = re.compile('i')
+qoute = ('Not all those who wander are lost. i')
+
+#Searching for the pattern within the qoute string using the search method
+print(pattern.search(qoute))
