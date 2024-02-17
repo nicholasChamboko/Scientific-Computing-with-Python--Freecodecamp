@@ -5,7 +5,7 @@ import re
 import secrets
 import string
 
-def generate_password(length, nums, special_char, uppercase, lowercase):
+def generate_password(length=8, nums=1, special_char=1, uppercase=2, lowercase=2):
     #Possible characters for the password
     letters = string.ascii_letters
     digits = string.digits
@@ -21,16 +21,36 @@ def generate_password(length, nums, special_char, uppercase, lowercase):
             password += secrets.choice(all_characters)
 
         constraints = [
-            (nums, '')
+            #\d character class is shortcut for 0-9 and [^0-9] is equal to \D and \w for alphanumeric as well as \W for non-alphanumeric
+            (nums, r'\d'),
+            (special_char, fr'[{symbols}]'),
+            (lowercase, r'[a-z]'),
+            (uppercase, r'[A-Z]'),
+            #combining a-z,A-Z and 0-9 into one character class
             ]
+        
+        #Check contraints
+        #A new list is created and the all() method instatantly iterates over it and the list is deleted thereby saving memory 
+        #Generator expressions are similar to list comprehensions but they use brackets instead of square brackets and are used for memory saving
+        if all(
+                constraint <= len(re.findall(pattern, password))
+                for constraint, pattern in constraints
+            ):
+                break
+
     return password
 
 """
     A regex is a pattern used to matcha specific combination of characters inside a string
 """
 #Compile function compiles the string passed as an argument into a regular expression object that can be used by other re methods
-pattern = re.compile('i')
-qoute = ('Not all those who wander are lost. i')
+pattern = r'[^a-z]t'
+qoute = ('Not all those who iiiiwander iiare lost. iiii')
 
-#Searching for the pattern within the qoute string using the search method
-print(pattern.search(qoute))
+#Searching for the pattern within the qoute string using the findall method
+#A dot is a wildcard that matches all characters except a newline character
+#r is a raw string that treats a backslash as a literal character rather than an escape sequence
+
+if __name__ == '__main__':
+    new_password = generate_password(length=8)
+    print(f'Generated password: {new_password}')
